@@ -96,6 +96,8 @@ cc_library(
 
 cc_binary(
     name = "silifuzz_centipede",
+    features = ["fully_static_link"],
+    linkstatic = 1,
     deps = [
         ":silifuzz_centipede_main",
     ],

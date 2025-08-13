@@ -84,6 +84,8 @@ cc_test(
 
 cc_binary(
     name = "hashtest_generator",
+    features = ["fully_static_link"],
+    linkstatic = 1,
     srcs = [
         "hashtest_generator_main.cc",
         "synthesize_snapshot.cc",
@@ -210,6 +212,8 @@ cc_test(
 
 cc_binary(
     name = "hashtest_runner",
+    features = ["fully_static_link"],
+    linkstatic = 1,
     srcs = [
         "hashtest_runner_main.cc",
     ],
