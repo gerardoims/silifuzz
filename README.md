@@ -154,10 +154,10 @@ For Bazel, use the following commands.
 
 ```shell
 cd "${SILIFUZZ_SRC_DIR}"
-COV_FLAGS_FILE="$(bazel info output_base)/external/com_google_fuzztest/centipede/clang-flags.txt"
+COV_FLAGS_FILE="$(bazel info output_base)/external/fuzztest+/centipede/clang-flags.txt"
 bazel build -c opt --copt=-UNDEBUG --dynamic_mode=off \
   --per_file_copt=unicorn/.*@$(xargs < "${COV_FLAGS_FILE}" |sed -e 's/,/\\,/g' -e 's/ /,/g') @//proxies:unicorn_x86_64
-bazel build -c opt @com_google_fuzztest//centipede:centipede
+bazel build -c opt @silifuzz//fuzzer:silifuzz_centipede 
 mkdir -p /tmp/wd
 
 # Fuzz the Unicorn proxy under Centipede 1000 times with parallelism of 30.
@@ -270,7 +270,7 @@ instructions supported by Skylake processors in the `/tmp/hashtest` directory,
 you could run this command.
 
 ```shell
-mkdir -p /tmp/hashtest && bazel run -c opt @silifuzz//fuzzer/hashtest:hashtest_generator -- --platform=intel-skylake -n 30000 --outdir /tmp/hashtest
+mkdir -p /tmp/hashtest && bazel run -c opt @silifuzz//fuzzer/hashtest:hashtest_generator -- --platform=intel-skylake -n 30000 --outdir /tmp/hashtest --make
 ```
 
 ## Frequently asked questions
